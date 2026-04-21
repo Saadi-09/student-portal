@@ -40,3 +40,29 @@ A multi-page Student Web Portal built as part of the **CYS-463L Web Engineering 
 ---
 
 ## 📁 File Structure
+student-portal/
+├── index.html          # Home / Main Page
+├── registration.html   # Registration Form
+├── dashboard.html      # Student Dashboard
+├── courses.html        # Course Selection
+├── feedback.html       # Feedback Form
+└── style.css           # Shared Theme & Glassmorphism Styles
+
+---
+
+## 🚀 How to Run
+
+1. Clone the repo:
+```bash
+   git clone https://github.com/YOUR_USERNAME/student-portal.git
+```
+2. Open `index.html` in any browser — no build tools or server needed.
+
+---
+
+## 📋 Course Info
+
+- **Course:** CYS-463L — Web Engineering (Lab)
+- **Semester:** Spring 2026
+- **Department:** Computer Science
+- **Assessment:** Mid Semester Lab Sessional — Group A
