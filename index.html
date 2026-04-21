@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Portal</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    /* ── Hero ── */
+    .hero-wrap {
+      min-height: calc(100vh - 66px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 60px 20px 40px;
+      text-align: center;
+    }
+
+    .pill-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 14px;
+      border-radius: 50px;
+      background: rgba(108,99,255,0.18);
+      border: 1px solid rgba(108,99,255,0.35);
+      color: var(--accent-light);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+
+    .pill-badge .dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent-light);
+      box-shadow: 0 0 6px var(--accent-light);
+    }
+
+    .hero-title {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      letter-spacing: -1px;
+      line-height: 1.15;
+      margin-bottom: 18px;
+    }
+
+    .hero-title .grad {
+      background: linear-gradient(90deg, #A89CFF, #2DD4BF);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+      max-width: 520px;
+      margin: 0 auto 34px;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn-glow {
+      padding: 12px 30px;
+      background: linear-gradient(135deg, var(--accent), #9B5DE5);
+      border: none;
+      border-radius: var(--radius-sm);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.95rem;
+      font-family: inherit;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 4px 22px rgba(108,99,255,0.5);
+      transition: opacity var(--transition), transform var(--transition);
+    }
+
+    .btn-glow:hover { opacity: 0.88; transform: translateY(-2px); color:#fff; }
+
+    /* ── Stats Row ── */
+    .stats-row {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 50px 0 60px;
+    }
+
+    .stat-chip {
+      padding: 10px 22px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 50px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    .stat-chip strong {
+      color: #fff;
+      font-weight: 700;
+    }
+
+    /* ── Feature Cards ── */
+    .features-section {
+      padding: 0 20px 70px;
+    }
+
+    .section-label {
+      text-align: center;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--accent-light);
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 1.7rem;
+      font-weight: 700;
+      margin-bottom: 40px;
+      letter-spacing: -0.3px;
+    }
+
+    .feature-card {
+      background: rgba(255,255,255,0.07);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius-lg);
+      padding: 28px 24px;
+      height: 100%;
+      transition: transform var(--transition), border-color var(--transition), background var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+      background: linear-gradient(90deg, transparent, var(--card-accent, var(--accent)), transparent);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(255,255,255,0.22);
+      background: rgba(255,255,255,0.11);
+    }
+
+    .card-icon-wrap {
+      width: 46px; height: 46px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      margin-bottom: 16px;
+    }
+
+    .feature-card h5 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .feature-card p {
+      font-size: 0.87rem;
+      color: var(--text-secondary);
+      margin-bottom: 18px;
+      line-height: 1.55;
+    }
+
+    .card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--card-accent, var(--accent-light));
+      text-decoration: none;
+      transition: gap var(--transition);
+    }
+
+    .card-link:hover { gap: 8px; color: var(--card-accent, var(--accent-light)); }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <span class="brand-dot"></span> Student Portal
+      </a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav" style="color:rgba(255,255,255,0.7);">
+        <span class="navbar-toggler-icon" style="filter:invert(1);"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="nav">
+        <ul class="navbar-nav ms-auto gap-1">
+          <li class="nav-item"><a class="nav-link active-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="registration.html">Register</a></li>
+          <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link" href="courses.html">Courses</a></li>
+          <li class="nav-item"><a class="nav-link" href="feedback.html">Feedback</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <div class="hero-wrap">
+    <div class="pill-badge"><span class="dot"></span> Spring 2026 &mdash; CYS-463L</div>
+    <h1 class="hero-title">
+      Your Academic Hub,<br/>
+      <span class="grad">All in One Place.</span>
+    </h1>
+    <p class="hero-sub">Register, explore courses, track your progress and share feedback — from a single, seamless portal.</p>
+    <div class="hero-btns">
+      <a class="btn-glow" href="registration.html">Get Started</a>
+      <a class="btn-secondary-custom" href="dashboard.html">View Dashboard →</a>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat-chip"><strong>4</strong> Courses Available</div>
+      <div class="stat-chip"><strong>5</strong> Connected Pages</div>
+      <div class="stat-chip"><strong>Live</strong> Date &amp; Time</div>
+    </div>
+  </div>
+
+  <!-- Features -->
+  <section class="features-section">
+    <div class="container">
+      <p class="section-label">What's inside</p>
+      <h2 class="section-title">Everything you need to get started</h2>
+
+      <div class="row g-4">
+        <div class="col-sm-6 col-lg-3">
+          <div class="feature-card" style="--card-accent: #A89CFF;">
+            <div class="card-icon-wrap" style="background: rgba(108,99,255,0.15);">📋</div>
+            <h5>Registration</h5>
+            <p>Sign up with a validated form — presence checks, email format, password match & age type checks.</p>
+            <a class="card-link" href="registration.html">Register now →</a>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-3">
+          <div class="feature-card" style="--card-accent: #2DD4BF;">
+            <div class="card-icon-wrap" style="background: rgba(45,212,191,0.15);">🖥️</div>
+            <h5>Dashboard</h5>
+            <p>Your personalised hub showing your name, live date &amp; time, and quick navigation cards.</p>
+            <a class="card-link" href="dashboard.html" style="color:#2DD4BF;">Open dashboard →</a>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-3">
+          <div class="feature-card" style="--card-accent: #FBBF24;">
+            <div class="card-icon-wrap" style="background: rgba(251,191,36,0.12);">📚</div>
+            <h5>Courses</h5>
+            <p>Browse and select from 4 courses. Submit selections and see your choices confirmed instantly.</p>
+            <a class="card-link" href="courses.html" style="color:#FBBF24;">Explore courses →</a>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-3">
+          <div class="feature-card" style="--card-accent: #FF6B9D;">
+            <div class="card-icon-wrap" style="background: rgba(255,107,157,0.12);">💬</div>
+            <h5>Feedback</h5>
+            <p>Rate your experience and leave comments. Validated form with a smooth success confirmation.</p>
+            <a class="card-link" href="feedback.html" style="color:#FF6B9D;">Give feedback →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2026 <span>Student Portal</span> &mdash; Department of Computer Science &mdash; CYS-463L
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

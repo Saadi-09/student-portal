@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Courses – Student Portal</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    .courses-layout {
+      min-height: calc(100vh - 66px);
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 52px 20px 60px;
+    }
+
+    .courses-card {
+      width: 100%;
+      max-width: 580px;
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: var(--radius-xl);
+      padding: 38px 40px;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.30);
+    }
+
+    .card-header-area {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .card-header-area .icon-wrap {
+      width: 54px; height: 54px;
+      border-radius: 16px;
+      background: rgba(251,191,36,0.12);
+      border: 1px solid rgba(251,191,36,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin: 0 auto 14px;
+    }
+
+    .card-header-area h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+    }
+
+    .card-header-area p {
+      color: var(--text-secondary);
+      font-size: 0.88rem;
+      margin-top: 4px;
+    }
+
+    /* Course Item */
+    .course-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 18px;
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.04);
+      margin-bottom: 12px;
+      cursor: pointer;
+      transition: border-color var(--transition), background var(--transition), transform var(--transition);
+      user-select: none;
+    }
+
+    .course-item:hover {
+      border-color: rgba(255,255,255,0.20);
+      background: rgba(255,255,255,0.08);
+      transform: translateX(3px);
+    }
+
+    .course-item.selected {
+      border-color: rgba(108,99,255,0.45);
+      background: rgba(108,99,255,0.10);
+    }
+
+    .course-item.selected .course-check {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .course-item.selected .course-check::after {
+      opacity: 1;
+    }
+
+    /* Custom checkbox */
+    .course-check {
+      width: 20px; height: 20px;
+      border-radius: 6px;
+      border: 1.5px solid rgba(255,255,255,0.25);
+      background: rgba(255,255,255,0.05);
+      flex-shrink: 0;
+      position: relative;
+      transition: background var(--transition), border-color var(--transition);
+    }
+
+    .course-check::after {
+      content: '';
+      position: absolute;
+      top: 3px; left: 6px;
+      width: 5px; height: 9px;
+      border: 2px solid #fff;
+      border-top: none;
+      border-left: none;
+      transform: rotate(45deg);
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+
+    .course-info {
+      flex: 1;
+    }
+
+    .course-info strong {
+      font-size: 0.95rem;
+      font-weight: 600;
+      display: block;
+    }
+
+    .course-info span {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .course-tag {
+      padding: 3px 10px;
+      border-radius: 50px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+    }
+
+    @media (max-width: 480px) {
+      .courses-card { padding: 26px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="index.html"><span class="brand-dot"></span> Student Portal</a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav" style="color:rgba(255,255,255,0.7);">
+        <span class="navbar-toggler-icon" style="filter:invert(1);"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="nav">
+        <ul class="navbar-nav ms-auto gap-1">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="registration.html">Register</a></li>
+          <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link active-link" href="courses.html">Courses</a></li>
+          <li class="nav-item"><a class="nav-link" href="feedback.html">Feedback</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="courses-layout">
+    <div class="courses-card">
+
+      <div class="card-header-area">
+        <div class="icon-wrap">📚</div>
+        <h2>Course Selection</h2>
+        <p>Tick the courses you want to enroll in this semester</p>
+      </div>
+
+      <!-- Course List -->
+      <div id="courseList">
+
+        <div class="course-item" onclick="toggle(this, 'c1')" data-id="c1">
+          <input type="checkbox" id="c1" value="Web Development" style="display:none;"/>
+          <div class="course-check"></div>
+          <div class="course-info">
+            <strong>Web Development</strong>
+            <span>HTML, CSS, JS, Bootstrap & beyond</span>
+          </div>
+          <span class="course-tag" style="background:rgba(108,99,255,0.18);color:#A89CFF;">CS</span>
+        </div>
+
+        <div class="course-item" onclick="toggle(this, 'c2')" data-id="c2">
+          <input type="checkbox" id="c2" value="Artificial Intelligence" style="display:none;"/>
+          <div class="course-check"></div>
+          <div class="course-info">
+            <strong>Artificial Intelligence</strong>
+            <span>ML fundamentals, search & reasoning</span>
+          </div>
+          <span class="course-tag" style="background:rgba(45,212,191,0.15);color:#2DD4BF;">AI</span>
+        </div>
+
+        <div class="course-item" onclick="toggle(this, 'c3')" data-id="c3">
+          <input type="checkbox" id="c3" value="Database Systems" style="display:none;"/>
+          <div class="course-check"></div>
+          <div class="course-info">
+            <strong>Database Systems</strong>
+            <span>SQL, normalization, query optimization</span>
+          </div>
+          <span class="course-tag" style="background:rgba(251,191,36,0.12);color:#FBBF24;">DB</span>
+        </div>
+
+        <div class="course-item" onclick="toggle(this, 'c4')" data-id="c4">
+          <input type="checkbox" id="c4" value="Mobile App Development" style="display:none;"/>
+          <div class="course-check"></div>
+          <div class="course-info">
+            <strong>Mobile App Development</strong>
+            <span>Cross-platform & native app design</span>
+          </div>
+          <span class="course-tag" style="background:rgba(255,107,157,0.12);color:#FF6B9D;">MOB</span>
+        </div>
+
+      </div>
+
+      <hr class="divider"/>
+
+      <button class="btn-primary-custom" onclick="submitCourses()">Submit Courses →</button>
+
+      <div class="back-link">
+        <a href="dashboard.html">← Back to Dashboard</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2026 <span>Student Portal</span> &mdash; CYS-463L Web Engineering Lab
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function toggle(el, id) {
+      const cb = document.getElementById(id);
+      cb.checked = !cb.checked;
+      el.classList.toggle('selected', cb.checked);
+    }
+
+    function submitCourses() {
+      const checked = document.querySelectorAll('input[type="checkbox"]:checked');
+      const selected = Array.from(checked).map(cb => cb.value);
+
+      if (selected.length === 0) {
+        alert('Please select at least one course before submitting.');
+        return;
+      }
+
+      alert('Enrolled in the following course(s):\n\n  • ' + selected.join('\n  • ') + '\n\nYour selection has been recorded successfully.');
+    }
+  </script>
+</body>
+</html>

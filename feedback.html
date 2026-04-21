@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Feedback – Student Portal</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    .feedback-layout {
+      min-height: calc(100vh - 66px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 52px 20px 60px;
+    }
+
+    .feedback-card {
+      width: 100%;
+      max-width: 540px;
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: var(--radius-xl);
+      padding: 38px 40px;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.30);
+    }
+
+    .card-header-area {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .card-header-area .icon-wrap {
+      width: 54px; height: 54px;
+      border-radius: 16px;
+      background: rgba(255,107,157,0.12);
+      border: 1px solid rgba(255,107,157,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin: 0 auto 14px;
+    }
+
+    .card-header-area h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+    }
+
+    .card-header-area p {
+      color: var(--text-secondary);
+      font-size: 0.88rem;
+      margin-top: 4px;
+    }
+
+    /* Star Rating */
+    .rating-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .rating-btn {
+      flex: 1;
+      min-width: 80px;
+      padding: 9px 4px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius-sm);
+      color: var(--text-secondary);
+      font-size: 0.8rem;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      text-align: center;
+      transition: all var(--transition);
+    }
+
+    .rating-btn:hover {
+      background: rgba(255,255,255,0.10);
+      border-color: rgba(255,255,255,0.22);
+      color: #fff;
+    }
+
+    .rating-btn.active {
+      background: rgba(251,191,36,0.15);
+      border-color: rgba(251,191,36,0.40);
+      color: #FBBF24;
+    }
+
+    .rating-btn .stars {
+      display: block;
+      font-size: 0.9rem;
+      margin-bottom: 2px;
+      letter-spacing: -1px;
+    }
+
+    /* Success state */
+    .success-box {
+      display: none;
+      text-align: center;
+      padding: 20px 10px;
+    }
+
+    .success-ring {
+      width: 70px; height: 70px;
+      border-radius: 50%;
+      background: rgba(45,212,191,0.10);
+      border: 2px solid rgba(45,212,191,0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      margin: 0 auto 20px;
+    }
+
+    .success-box h4 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--teal);
+      margin-bottom: 8px;
+    }
+
+    .success-box p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      margin-bottom: 22px;
+    }
+
+    @media (max-width: 480px) {
+      .feedback-card { padding: 26px 20px; }
+      .rating-btn .label { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="index.html"><span class="brand-dot"></span> Student Portal</a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav" style="color:rgba(255,255,255,0.7);">
+        <span class="navbar-toggler-icon" style="filter:invert(1);"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="nav">
+        <ul class="navbar-nav ms-auto gap-1">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="registration.html">Register</a></li>
+          <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link" href="courses.html">Courses</a></li>
+          <li class="nav-item"><a class="nav-link active-link" href="feedback.html">Feedback</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="feedback-layout">
+    <div class="feedback-card">
+
+      <!-- Success State -->
+      <div class="success-box" id="successBox">
+        <div class="success-ring">✓</div>
+        <h4>Feedback Submitted!</h4>
+        <p>Thanks for sharing your thoughts. We'll use your input to improve the portal experience.</p>
+        <a href="dashboard.html" class="btn-secondary-custom" style="display:inline-flex;margin:0 auto;">← Back to Dashboard</a>
+      </div>
+
+      <!-- Feedback Form -->
+      <div id="feedbackForm">
+        <div class="card-header-area">
+          <div class="icon-wrap">💬</div>
+          <h2>Share Feedback</h2>
+          <p>We value your thoughts — every response matters</p>
+        </div>
+
+        <div class="field-group" id="grp-fbname">
+          <label>Your Name</label>
+          <input type="text" id="fbName" placeholder="Enter your name"/>
+          <div class="err" id="fbNameErr">⚠ Name cannot be empty.</div>
+        </div>
+
+        <div class="field-group" id="grp-fbcomment">
+          <label>Comments</label>
+          <textarea id="fbComments" placeholder="What do you think about the portal?"></textarea>
+          <div class="err" id="fbCommentsErr">⚠ Please write your comments.</div>
+        </div>
+
+        <div class="field-group" id="grp-fbrating">
+          <label>Rating</label>
+          <div class="rating-row" id="ratingRow">
+            <button class="rating-btn" onclick="selectRating(this, '1')" type="button">
+              <span class="stars">★</span>
+              <span class="label">Poor</span>
+            </button>
+            <button class="rating-btn" onclick="selectRating(this, '2')" type="button">
+              <span class="stars">★★</span>
+              <span class="label">Fair</span>
+            </button>
+            <button class="rating-btn" onclick="selectRating(this, '3')" type="button">
+              <span class="stars">★★★</span>
+              <span class="label">Good</span>
+            </button>
+            <button class="rating-btn" onclick="selectRating(this, '4')" type="button">
+              <span class="stars">★★★★</span>
+              <span class="label">Great</span>
+            </button>
+            <button class="rating-btn" onclick="selectRating(this, '5')" type="button">
+              <span class="stars">★★★★★</span>
+              <span class="label">Excellent</span>
+            </button>
+          </div>
+          <input type="hidden" id="fbRating" value=""/>
+          <div class="err" id="fbRatingErr">⚠ Please select a rating.</div>
+        </div>
+
+        <hr class="divider"/>
+
+        <button class="btn-primary-custom" onclick="submitFeedback()">Submit Feedback →</button>
+
+        <div class="back-link">
+          <a href="dashboard.html">← Back to Dashboard</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2026 <span>Student Portal</span> &mdash; CYS-463L Web Engineering Lab
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function selectRating(btn, val) {
+      document.querySelectorAll('.rating-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('fbRating').value = val;
+    }
+
+    function setErr(grpId, errId, show) {
+      document.getElementById(grpId).classList.toggle('input-has-error', show);
+      document.getElementById(errId).style.display = show ? 'block' : 'none';
+    }
+
+    function submitFeedback() {
+      let valid = true;
+
+      const name = document.getElementById('fbName').value.trim();
+      const ok1 = name !== '';
+      setErr('grp-fbname', 'fbNameErr', !ok1);
+      if (!ok1) valid = false;
+
+      const comments = document.getElementById('fbComments').value.trim();
+      const ok2 = comments !== '';
+      setErr('grp-fbcomment', 'fbCommentsErr', !ok2);
+      if (!ok2) valid = false;
+
+      const rating = document.getElementById('fbRating').value;
+      const ok3 = rating !== '';
+      setErr('grp-fbrating', 'fbRatingErr', !ok3);
+      if (!ok3) valid = false;
+
+      if (valid) {
+        document.getElementById('feedbackForm').style.display = 'none';
+        document.getElementById('successBox').style.display = 'block';
+      }
+    }
+  </script>
+</body>
+</html>
