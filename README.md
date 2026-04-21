@@ -40,13 +40,13 @@ A multi-page Student Web Portal built as part of the **CYS-463L Web Engineering 
 ---
 
 ## 📁 File Structure
-student-portal/
-├── index.html          # Home / Main Page
-├── registration.html   # Registration Form
-├── dashboard.html      # Student Dashboard
-├── courses.html        # Course Selection
-├── feedback.html       # Feedback Form
-└── style.css           # Shared Theme & Glassmorphism Styles
+- student-portal/
+  - index.html — Home / Main Page
+  - registration.html — Registration Form
+  - dashboard.html — Student Dashboard
+  - courses.html — Course Selection
+  - feedback.html — Feedback Form
+  - style.css — Shared Theme & Glassmorphism Styles
 
 ---
 
